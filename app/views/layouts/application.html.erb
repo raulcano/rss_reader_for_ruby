@@ -5,6 +5,14 @@
     <%= stylesheet_link_tag    "application", media: "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
+	<%= javascript_include_tag 'jquery.ui.nestedSortable' %>
+    <%= javascript_include_tag 'comments_tree' %>
+
+  <%= stylesheet_link_tag    'tree',          :media => :all %>
+  <%= stylesheet_link_tag    'sortable',      :media => :all %>
+  <%= stylesheet_link_tag    'comments_tree', :media => :all %>
+	
+	
     <%= render 'layouts/shim' %>    
   </head>
 	<body>

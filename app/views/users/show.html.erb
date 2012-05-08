@@ -16,5 +16,11 @@
       </ol>
       <%= will_paginate @microposts %>
     <% end %>
+
+#This is to list the microposts as a sortable tree
+	
+	<%= sortable_tree @microposts, :new_url => "#", :type => :sortable, :max_levels => 4 %>
+
+	
   </div>
 </div>

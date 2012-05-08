@@ -1,7 +1,7 @@
 SampleApp::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :microposts, only: [:create, :destroy]
+  # resources :microposts, only: [:create, :destroy]
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
@@ -13,6 +13,14 @@ SampleApp::Application.routes.draw do
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
 
+  # This is for The Sortable Tree applied to microposts
+  resources :microposts do
+	collection do
+		get :manage
+		post :rebuild
+	  end
+	end
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
