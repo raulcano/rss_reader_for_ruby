@@ -1,5 +1,4 @@
 class MicropostsController < ApplicationController
-  include TheSortableTreeController::Rebuild
   before_filter :signed_in_user, only: [:create, :destroy]
   before_filter :correct_user,   only: :destroy
   
@@ -18,12 +17,7 @@ class MicropostsController < ApplicationController
     @micropost.destroy
     redirect_back_or root_path
   end
-  
-  #This method "manage" is for the Sortable tree
-  def manage
-    @microposts = Micropost.nested_set.all
-  end
-  
+
   private
 
     def correct_user

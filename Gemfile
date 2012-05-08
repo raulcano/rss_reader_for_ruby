@@ -33,6 +33,7 @@ group :production do
 <<<<<<< HEAD
 end
 
+<<<<<<< HEAD
 # Gems for the Sortable Tree
 gem 'haml'
 gem 'awesome_nested_set' # gem 'nested_set'
@@ -40,3 +41,5 @@ gem 'the_sortable_tree'
 =======
 end
 >>>>>>> parent of 6ad0280... No changes added
+=======
+>>>>>>> parent of a0ec523... added the sortable tree to the microposts

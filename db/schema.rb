@@ -12,21 +12,20 @@
 # It's strongly recommended to check this file into your version control system.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20120508183244) do
 =======
 ActiveRecord::Schema.define(:version => 20120503124713) do
 >>>>>>> parent of 6ad0280... No changes added
+=======
+ActiveRecord::Schema.define(:version => 20120506130259) do
+>>>>>>> parent of a0ec523... added the sortable tree to the microposts
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "parent_id"
-    t.integer  "lft"
-    t.integer  "rgt"
-    t.integer  "depth"
-    t.string   "title"
   end
 
   add_index "microposts", ["user_id", "created_at"], :name => "index_microposts_on_user_id_and_created_at"
