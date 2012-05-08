@@ -30,16 +30,19 @@ end
 
 group :production do
   gem 'pg', '0.12.2'
-<<<<<<< HEAD
 end
 
 <<<<<<< HEAD
 # Gems for the Sortable Tree
 gem 'haml'
 gem 'awesome_nested_set' # gem 'nested_set'
+<<<<<<< HEAD
 gem 'the_sortable_tree'
 =======
 end
 >>>>>>> parent of 6ad0280... No changes added
 =======
 >>>>>>> parent of a0ec523... added the sortable tree to the microposts
+=======
+gem 'the_sortable_tree'
+>>>>>>> parent of e81f164... Some changes related to relationships
