@@ -30,9 +30,13 @@ end
 
 group :production do
   gem 'pg', '0.12.2'
+<<<<<<< HEAD
 end
 
 # Gems for the Sortable Tree
 gem 'haml'
 gem 'awesome_nested_set' # gem 'nested_set'
 gem 'the_sortable_tree'
+=======
+end
+>>>>>>> parent of 6ad0280... No changes added
