@@ -1,4 +1,6 @@
 SampleApp::Application.routes.draw do
+  get "folders/new"
+
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
@@ -13,6 +15,14 @@ SampleApp::Application.routes.draw do
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
 
+  # This is for The Sortable Tree applied to microposts
+  resources :folders do
+	collection do
+		get :manage
+		post :rebuild
+	  end
+	end
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
