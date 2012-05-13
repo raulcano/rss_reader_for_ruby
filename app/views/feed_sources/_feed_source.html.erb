@@ -1,0 +1,13 @@
+<li>
+  <h3>
+  <span class="title"><%= link_to feed_source.title, feed_source %></span>
+  </h3>
+  <span class="timestamp">
+    Added <%= time_ago_in_words(feed_source.created_at) %> ago.
+  </span>
+  <% #if current_user?(feed_source.user) %>
+    <%= link_to "delete", feed_source, method:  :delete,
+                                     confirm: "You sure?",
+                                     title:   feed_source.title %>
+  <% #end %>
+</li>

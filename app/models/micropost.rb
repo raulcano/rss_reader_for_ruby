@@ -1,5 +1,5 @@
 class Micropost < ActiveRecord::Base
-  include TheSortableTree::Scopes
+  
   attr_accessible :content
   belongs_to :user
   

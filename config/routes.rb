@@ -4,7 +4,8 @@ SampleApp::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
-
+  resources :feed_sources
+  
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
@@ -15,7 +16,7 @@ SampleApp::Application.routes.draw do
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
 
-  # This is for The Sortable Tree applied to microposts
+  # This is for The Sortable Tree for folders
   resources :folders do
 	collection do
 		get :manage

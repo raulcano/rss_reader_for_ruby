@@ -1,0 +1,9 @@
+<li>
+  <span class="title"><%= feed_entry.name %></span><br/>
+  <span class="summary">
+    <%= truncate(strip_tags(feed_entry.summary), :length => 170)%>
+  </span>
+  <span class="timestamp">
+    Added <%= time_ago_in_words(feed_entry.created_at) %> ago.
+  </span>
+</li>

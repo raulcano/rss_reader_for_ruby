@@ -1,0 +1,20 @@
+<% provide(:title, @feed_source.title) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= @feed_source.title %>
+		<% if @feed_source.feed_entries.any? %>
+		(<%= @feed_source.feed_entries.count %>)
+		<% end %>
+      </h1>
+    </section>
+  </aside>
+  <div class="span8">
+    <% if @feed_source.feed_entries.any? %>
+      <ol class="feed_entries">
+        <%= render @feed_source.feed_entries %>
+      </ol>
+    <% end %>
+  </div>
+</div>

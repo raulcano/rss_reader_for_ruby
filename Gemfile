@@ -37,3 +37,6 @@ gem 'haml'
 gem 'awesome_nested_set' # gem 'nested_set'
 gem 'the_sortable_tree'
 
+# Gems for Feedzirra
+gem 'feedzirra'
+gem 'curb'

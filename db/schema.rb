@@ -11,7 +11,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120508205436) do
+ActiveRecord::Schema.define(:version => 20120513161145) do
+
+  create_table "feed_entries", :force => true do |t|
+    t.string   "name"
+    t.text     "summary"
+    t.string   "url"
+    t.datetime "published_at"
+    t.string   "guid"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "feed_source_id"
+  end
+
+  add_index "feed_entries", ["feed_source_id"], :name => "index_feed_entries_on_feed_source_id"
+
+  create_table "feed_sources", :force => true do |t|
+    t.string   "title"
+    t.string   "url"
+    t.string   "hashtags"
+    t.integer  "folder_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "folders", :force => true do |t|
     t.integer  "parent_id"
