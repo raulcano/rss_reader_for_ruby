@@ -1,6 +1,8 @@
 class FeedSource < ActiveRecord::Base
-  attr_accessible :folder_id, :hashtags, :title, :url, :user_id
+  attr_accessible :folder_id, :hashtags, :title, :url
+  belongs_to :user
   has_many :feed_entries, dependent: :destroy
+  
   validates :title, presence: true, length: { maximum: 50}
   validates :user_id, presence: true
   

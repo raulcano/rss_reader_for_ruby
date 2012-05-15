@@ -1,0 +1,27 @@
+<% provide(:title, 'Edit feed source') %>
+<h1>Update feed source</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+  <%= form_for(@feed_source) do |f| %>
+	  <%= render 'shared/error_messages', object: f.object %>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+
+      <%= f.label :url %>
+      <%= f.text_field :url ,:readonly => true %>
+
+	  <%= f.label :hashtags, "Hashtags describing the feed source" %>
+      <%= f.text_field :hashtags %>
+      
+	  <%= f.label :folder_id %>
+	  <% options = []
+	sorted_nested_set_options(Folder, lambda{ |folder| folder.lft }) do |folder, depth| 
+	options << content_tag(:option, folder.title, :value => folder.id, :id => "level_#{folder.depth}") end	%>
+	<%= select_tag "feed_source[folder_id]", options.join.html_safe %>
+ 
+
+      <%= f.submit "Add", class: "btn btn-large btn-primary" %>
+    <% end %>  
+  </div>
+</div>

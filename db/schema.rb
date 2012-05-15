@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120513161145) do
+ActiveRecord::Schema.define(:version => 20120514201145) do
 
   create_table "feed_entries", :force => true do |t|
     t.string   "name"
@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(:version => 20120513161145) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "feed_sources", ["user_id", "created_at"], :name => "index_feed_sources_on_user_id_and_created_at"
 
   create_table "folders", :force => true do |t|
     t.integer  "parent_id"

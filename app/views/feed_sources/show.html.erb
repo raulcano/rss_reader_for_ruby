@@ -8,13 +8,27 @@
 		(<%= @feed_source.feed_entries.count %>)
 		<% end %>
       </h1>
+	  
+	  <span class="hashtags">
+	   <%= @feed_source.hashtags %>
+	   </span>
+	   <br/>
+	   <% if current_user?(@feed_source.user) %>
+	   
+    <%= link_to "edit", edit_feed_source_path(@feed_source) %> | 
+	<%= link_to "delete", @feed_source, method:  :delete,
+                                     confirm: "You sure?",
+                                     title:   @feed_source.title %>
+  <% end %>
     </section>
   </aside>
   <div class="span8">
-    <% if @feed_source.feed_entries.any? %>
+    <% if @feed_entries.any? %>
+	<%= will_paginate @feed_entries %>
       <ol class="feed_entries">
-        <%= render @feed_source.feed_entries %>
+        <%= render @feed_entries %>
       </ol>
+	  <%= will_paginate @feed_entries %>
     <% end %>
   </div>
 </div>

@@ -5,6 +5,7 @@ SampleApp::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
   resources :feed_sources
+  resources :feed_entries, only: [:destroy]
   
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
