@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120514201145) do
+ActiveRecord::Schema.define(:version => 20120516234412) do
 
   create_table "feed_entries", :force => true do |t|
     t.string   "name"
@@ -19,12 +19,25 @@ ActiveRecord::Schema.define(:version => 20120514201145) do
     t.string   "url"
     t.datetime "published_at"
     t.string   "guid"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-    t.integer  "feed_source_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "feed_source_url"
   end
 
-  add_index "feed_entries", ["feed_source_id"], :name => "index_feed_entries_on_feed_source_id"
+  add_index "feed_entries", ["feed_source_url"], :name => "index_feed_entries_on_feed_source_url"
+
+  create_table "feed_source_entries", :force => true do |t|
+    t.integer  "feed_source_id"
+    t.integer  "feed_entry_id"
+    t.integer  "is_starred"
+    t.integer  "is_read"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "feed_source_entries", ["feed_entry_id"], :name => "index_feed_source_entries_on_feed_entry_id"
+  add_index "feed_source_entries", ["feed_source_id", "feed_entry_id"], :name => "index_feed_source_entries_on_feed_source_id_and_feed_entry_id", :unique => true
+  add_index "feed_source_entries", ["feed_source_id"], :name => "index_feed_source_entries_on_feed_source_id"
 
   create_table "feed_sources", :force => true do |t|
     t.string   "title"

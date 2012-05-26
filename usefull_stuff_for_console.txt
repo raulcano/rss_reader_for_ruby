@@ -1,0 +1,10 @@
+url = "http://elmundo.feedsportal.com/elmundo/rss/portada.xml"
+
+url = "http://feeds.weblogssl.com/elblogsalmon2"
+
+f = FeedSource.find_by_url(url)
+
+f.update_entries!
+
+
+matches = FeedSource.find_all_by_url(url)

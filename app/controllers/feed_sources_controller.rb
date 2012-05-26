@@ -11,20 +11,26 @@ class FeedSourcesController < ApplicationController
   end
   
   def show
-	# We show the title of the source, a list of its feed entries and a button to refresh
+	  # We show the title of the source, a list of its feed entries and a button to refresh
     @feed_source = current_user.feed_sources.find(params[:id])
-	
-	# Here we fetch all the feed entries belonging to this feed source and this user
-	# We have to update the feed_source_id to every feed_entry
-	# Still not sure if this is the best way to do it
-	FeedEntry.update_from_feed(@feed_source.url, @feed_source.id)
-	
-	@feed_entries = @feed_source.feed_entries.paginate(page: params[:page])
-	
+    
+    #This is only for testing the show list
+    #@feed_source.update_entries! #this must be removed
+    
+    
+    @feed_entries = @feed_source.feed_entries.paginate(page: params[:page])
+  end
+  
+  def update_entries
+    # This, updates the entries of this feed_source and other feed_sources with the same URL
+    # There should be another method to update, in which the user presses the "Refresh" button
+    # and trigger this action
+    @feed_source = current_user.feed_sources.find(params[:id])
+    @feed_source.update_entries!
   end
   
   def new
-	@feed_source = current_user.feed_sources.build
+	 @feed_source = current_user.feed_sources.build
   end
   
   def create
@@ -32,15 +38,15 @@ class FeedSourcesController < ApplicationController
 		
     if @feed_source.save
       flash[:success] = "Feed source added!"
-	  redirect_to @feed_source
+	    redirect_to @feed_source
     else
-	  render 'new'
+	     render 'new'
     end
 	
   end
   
   def edit
-	@feed_source = current_user.feed_sources.find(params[:id])		
+	 @feed_source = current_user.feed_sources.find(params[:id])		
   end
   
   def update
@@ -55,7 +61,18 @@ class FeedSourcesController < ApplicationController
   
   
   def destroy
-	# We should take care not to destroy the feed entries  if other user has this feed source in the db
+	   # We should take care not to destroy the feed entries  if other user has this feed source in the db
+	  # 1.- Check if there are other feed_sources in the db with the same feed_url
+	  
+	  # 2.- If not, 
+	  
+	  # Destroy the feed_source_entries (in the relationship)
+	  # Destroy the feed_entries belonging to the feed_source
+	  # => feed_source.feed_entries.destroy
+	  
+	  # Destroy the feed_source
+	  # 
+    
     current_user.feed_sources.find(params[:id]).destroy
     flash[:success] = "Feed source destroyed."
     redirect_to feed_sources_path
