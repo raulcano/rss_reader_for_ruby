@@ -1,6 +1,8 @@
 class FeedEntriesController < ApplicationController
  
-  def index
+  def destroy
+    @feed_entry.destroy
+    #redirect_back_or root_path
   end
   
 end

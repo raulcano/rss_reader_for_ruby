@@ -37,6 +37,7 @@ class FeedSourcesController < ApplicationController
     @feed_source = current_user.feed_sources.build(params[:feed_source])
 		
     if @feed_source.save
+      @feed_source.update_entries!
       flash[:success] = "Feed source added!"
 	    redirect_to @feed_source
     else
@@ -61,19 +62,15 @@ class FeedSourcesController < ApplicationController
   
   
   def destroy
-	   # We should take care not to destroy the feed entries  if other user has this feed source in the db
-	  # 1.- Check if there are other feed_sources in the db with the same feed_url
-	  
-	  # 2.- If not, 
-	  
-	  # Destroy the feed_source_entries (in the relationship)
-	  # Destroy the feed_entries belonging to the feed_source
-	  # => feed_source.feed_entries.destroy
-	  
-	  # Destroy the feed_source
-	  # 
-    
-    current_user.feed_sources.find(params[:id]).destroy
+	  @feed_source = current_user.feed_sources.find(params[:id])
+    if FeedSource.find_all_by_url(@feed_source.url).count == 1 
+      # We assume this will delete both the entries and the relationships
+      @feed_source.feed_entries.destroy
+    else
+      # We assume this will delete only the relationships
+      @feed_source.feed_source_entries.destroy
+    end
+    @feed_source.destroy
     flash[:success] = "Feed source destroyed."
     redirect_to feed_sources_path
   end

@@ -74,5 +74,40 @@ describe FeedSource do
     end
   end
 
+describe "deleting feed sources" do
+    # We check that the destroy action does not destroy the feed entries if other user 
+    # has the same feed_source
+    before do
+      feed_source.save
+      feed_source_similar_URL.save
+      feed_source_different_URL.save
+    end
+ 
+    it "should delete source, entries and the relationships when the source is unique (no other source has the same url)" do
+      feed_source_different_URL.update_entries!
+      feed_entries = feed_source_different_URL.feed_entries
+      feed_source_id = feed_source_different_URL.id 
+      feed_source_different_URL.destroy
+      feed_entries.each do |entry|
+        FeedEntry.find_by_id(entry.id).should be_nil
+      end
+      FeedSourceEntry.find_by_feed_source_id(feed_source_id).should be_nil
+      FeedSource.find_by_id(feed_source_id).should be_nil
+    end
+    
+    it "should delete source and the relationships when the source is not unique (other source has the same url)" do
+      feed_source.update_entries!
+      feed_entries = feed_source.feed_entries
+      feed_source_id = feed_source.id
+      feed_source.destroy
+      # This is to check that the other source still has the associated feed_entries
+      feed_entries.each do |entry|
+        feed_source_similar_URL.should have_entry(entry)
+      end
+      FeedSourceEntry.find_by_feed_source_id(feed_source_id).should be_nil
+      FeedSource.find_by_id(feed_source_id).should be_nil
+    end
+  end
+
   
 end
