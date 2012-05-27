@@ -13,11 +13,6 @@ class FeedSourcesController < ApplicationController
   def show
 	  # We show the title of the source, a list of its feed entries and a button to refresh
     @feed_source = current_user.feed_sources.find(params[:id])
-    
-    #This is only for testing the show list
-    #@feed_source.update_entries! #this must be removed
-    
-    
     @feed_entries = @feed_source.feed_entries.paginate(page: params[:page])
   end
   
@@ -27,6 +22,9 @@ class FeedSourcesController < ApplicationController
     # and trigger this action
     @feed_source = current_user.feed_sources.find(params[:id])
     @feed_source.update_entries!
+    
+    @feed_entries = @feed_source.feed_entries.paginate(page: params[:page])
+    render 'show' 
   end
   
   def new

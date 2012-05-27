@@ -12,13 +12,14 @@
 	  <span class="hashtags">
 	   <%= @feed_source.hashtags %>
 	   </span>
-	   <br/>
 	   <% if current_user?(@feed_source.user) %>
-	   
-    <%= link_to "edit", edit_feed_source_path(@feed_source) %> | 
+	   <%= link_to "edit", edit_feed_source_path(@feed_source) %> | 
 	<%= link_to "delete", @feed_source, method:  :delete,
                                      confirm: "You sure?",
                                      title:   @feed_source.title %>
+	    <%= form_for( @feed_source, :url => url_for(:controller => 'feed_sources', :action => 'update_entries', :id => @feed_source.id)) do |f| %>
+	  	  <%= f.submit "Refresh", class: "btn btn-small btn-secondary" %>
+		<% end %>
   <% end %>
     </section>
   </aside>

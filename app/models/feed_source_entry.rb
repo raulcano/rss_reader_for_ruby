@@ -6,5 +6,6 @@ class FeedSourceEntry < ActiveRecord::Base
 
   validates :feed_source_id, presence: true
   validates :feed_entry_id, presence: true
+  validates_uniqueness_of :feed_source_id, scope: :feed_entry_id
 end
 
