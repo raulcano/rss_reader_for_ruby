@@ -36,7 +36,8 @@ class FeedSource < ActiveRecord::Base
     matching_sources.each do |s|
       #update relationships in the source s with the new entries
       new_entries.each do |entry|
-        s.add_entry!(FeedEntry.find_by_guid(entry.entry_id))
+        feed_entry = FeedEntry.find_by_guid(entry.entry_id)
+        s.add_entry!(feed_entry) unless s.has_entry?(feed_entry)
       end
     end
     # We want that this method return the new entries

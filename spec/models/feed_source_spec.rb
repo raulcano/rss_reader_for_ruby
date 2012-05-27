@@ -74,7 +74,7 @@ describe FeedSource do
     end
   end
 
-describe "deleting feed sources" do
+  describe "deleting feed sources" do
     # We check that the destroy action does not destroy the feed entries if other user 
     # has the same feed_source
     before do
