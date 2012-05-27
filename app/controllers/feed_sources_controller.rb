@@ -24,7 +24,11 @@ class FeedSourcesController < ApplicationController
     @feed_source.update_entries!
     
     @feed_entries = @feed_source.feed_entries.paginate(page: params[:page])
-    render 'show' 
+    
+    respond_to do |format|
+      format.html { render 'show' }
+      format.js #update_entries.js.erb
+    end
   end
   
   def new

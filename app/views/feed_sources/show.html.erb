@@ -4,32 +4,42 @@
     <section>
       <h1>
         <%= @feed_source.title %>
+        <div id="feed_entries_count">
 		<% if @feed_source.feed_entries.any? %>
 		(<%= @feed_source.feed_entries.count %>)
 		<% end %>
+		</span>
       </h1>
 	  
 	  <span class="hashtags">
 	   <%= @feed_source.hashtags %>
 	   </span>
 	   <% if current_user?(@feed_source.user) %>
+	   <span class="feed_source_links"> [
 	   <%= link_to "edit", edit_feed_source_path(@feed_source) %> | 
 	<%= link_to "delete", @feed_source, method:  :delete,
                                      confirm: "You sure?",
                                      title:   @feed_source.title %>
-	    <%= form_for( @feed_source, :url => url_for(:controller => 'feed_sources', :action => 'update_entries', :id => @feed_source.id)) do |f| %>
-	  	  <%= f.submit "Refresh", class: "btn btn-small btn-secondary" %>
-		<% end %>
+		]
+		</span>
+		<br />
+		<%= form_for( @feed_source, 
+	    			:url => url_for(:controller => 'feed_sources', :action => 'update_entries', :id => @feed_source.id),
+	    			:remote => true) do |f| %>
+	  	 				 <%= f.submit "Refresh", class: "btn btn-small btn-secondary" %>
+					<% end %>
   <% end %>
     </section>
   </aside>
   <div class="span8">
+  	 <ol class="feed_entries" id="feed_entries">
     <% if @feed_entries.any? %>
-	<%= will_paginate @feed_entries %>
-      <ol class="feed_entries">
         <%= render @feed_entries %>
-      </ol>
-	  <%= will_paginate @feed_entries %>
-    <% end %>
+        </ol>
+      	<%= will_paginate @feed_entries %>
+     <% else %>
+     	<i>No entries found. Try refreshing :)</i>
+      	</ol>
+	  <% end %>
   </div>
 </div>

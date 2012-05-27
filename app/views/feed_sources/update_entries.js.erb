@@ -1,0 +1,2 @@
+$("#feed_entries").html("<%= escape_javascript(render @feed_entries) %>")
+$("#feed_entries_count").html("<%= '(' + @feed_entries.count.to_s + ')' %>")

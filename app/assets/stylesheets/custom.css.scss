@@ -226,11 +226,28 @@ aside {
    .title {
     font-weight: bold;
   }
+  
 }
 
 .hashtags{
   font-size: 0.9em;
   color: $grayLight;
+  display: inline;
 }
+#feed_entries_count{
+    display: inline;
+  }
 
+.feed_source_links{
+  font-size: 0.9em;
+  color: $grayLight;
+  display: inline;
+  a {
+    color: $grayLight;
+    text-decoration: none;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
 
