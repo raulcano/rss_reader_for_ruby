@@ -61,5 +61,8 @@ module SampleApp
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    
+    # JQuery for Rails . Is that necessary?
+    # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
   end
 end

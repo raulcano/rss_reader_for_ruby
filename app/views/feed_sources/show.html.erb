@@ -24,11 +24,15 @@
 		</span>
 		<br />
 		<%= form_for( @feed_source, 
-	    			:url => url_for(:controller => 'feed_sources', :action => 'update_entries', :id => @feed_source.id),
+					:html => { :id => "feed_source_refresh" },
+					:url => url_for(:controller => 'feed_sources', :action => 'update_entries', :id => @feed_source.id),
 	    			:remote => true) do |f| %>
 	  	 				 <%= f.submit "Refresh", class: "btn btn-small btn-secondary" %>
 					<% end %>
+					
+		
   <% end %>
+  <span id="loading" style="display: none; "><img alt="Ajax-loader" src="/assets/ajax-loader.gif"> Loading...</span>
     </section>
   </aside>
   <div class="span8">

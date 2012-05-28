@@ -13,7 +13,7 @@ class FeedSourcesController < ApplicationController
   def show
 	  # We show the title of the source, a list of its feed entries and a button to refresh
     @feed_source = current_user.feed_sources.find(params[:id])
-    @feed_entries = @feed_source.feed_entries.paginate(page: params[:page])
+    @feed_entries = @feed_source.feed_entries.paginate(page: params[:page], :per_page => 10)
   end
   
   def update_entries
@@ -23,7 +23,8 @@ class FeedSourcesController < ApplicationController
     @feed_source = current_user.feed_sources.find(params[:id])
     @feed_source.update_entries!
     
-    @feed_entries = @feed_source.feed_entries.paginate(page: params[:page])
+    #@feed_entries = @feed_source.feed_entries.paginate(page: params[:page], :per_page => 10)
+    @feed_entries = @feed_source.feed_entries.paginate(page: 1, per_page:  10)
     
     respond_to do |format|
       format.html { render 'show' }
@@ -39,7 +40,7 @@ class FeedSourcesController < ApplicationController
     @feed_source = current_user.feed_sources.build(params[:feed_source])
 		
     if @feed_source.save
-      @feed_source.update_entries!
+      #@feed_source.update_entries! #disabled temporary, this must not be commented normally
       flash[:success] = "Feed source added!"
 	    redirect_to @feed_source
     else
@@ -54,7 +55,7 @@ class FeedSourcesController < ApplicationController
   
   def update
     @feed_source = current_user.feed_sources.find(params[:id])
-	if @feed_source.update_attributes(params[:feed_source])
+	   if @feed_source.update_attributes(params[:feed_source])
       flash[:success] = "Profile updated"
       redirect_to @feed_source
     else

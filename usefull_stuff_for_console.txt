@@ -8,3 +8,27 @@ f.update_entries!
 
 
 matches = FeedSource.find_all_by_url(url)
+
+
+<%= form_for( @feed_source, 
+					:id => 'feed-source-refresh-form',
+	    			:url => url_for(:controller => 'feed_sources', :action => 'update_entries', :id => @feed_source.id),
+	    			:remote => true) do |f| %>
+	  	 				 <%= f.submit "Refresh", class: "btn btn-small btn-secondary" %>
+					<% end %>
+					
+
+
+// The code to show a loading animation while retrieving the feeds
+jQuery(function($) {
+  // create a convenient toggleLoading function
+  var toggleLoading = function() { $("#loading").toggle() };
+  var fadeOut = function() { $("#loading").fadeOut() };
+  
+  var hide = function() { $("#loading").hide() };
+  var show = function() { $("#loading").show() };
+  
+  $("#feed_source_refresh")
+    .bind("ajax:loading",  show)
+    .bind("ajax:complete", hide)
+});
