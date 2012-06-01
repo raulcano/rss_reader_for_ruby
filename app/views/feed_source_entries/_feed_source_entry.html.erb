@@ -1,0 +1,15 @@
+<% feed_style = (feed_source_entry.is_read? ? "read_entry" : "unread_entry") %>
+<li id="<%= dom_id feed_source_entry %>" class="<%= feed_style%> folded" >
+  <span class="title">
+  <%= link_to feed_source_entry.feed_entry.name,
+  			{:controller => 'feed_source_entries',:action => 'unfold', :id => feed_source_entry.id},
+  			{:remote => :true}
+  			 %>
+  </span><br/>
+  <span class="summary">
+    <%= truncate(strip_tags(feed_source_entry.feed_entry.summary), :length => 170)%>
+  </span>
+  <span class="timestamp">
+    Published <%= time_ago_in_words(feed_source_entry.feed_entry.published_at) %> ago.
+  </span>
+</li>

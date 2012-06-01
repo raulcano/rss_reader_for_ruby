@@ -13,7 +13,9 @@ class FeedSourcesController < ApplicationController
   def show
 	  # We show the title of the source, a list of its feed entries and a button to refresh
     @feed_source = current_user.feed_sources.find(params[:id])
-    @feed_entries = @feed_source.feed_entries.paginate(page: params[:page], :per_page => 10)
+    # We have to pass the list of feed_source_entries, since it contains the attributes
+    # of each feed_entry belonging to this feed_source
+    @feed_source_entries = @feed_source.feed_source_entries.paginate(page: params[:page], :per_page => 10)
   end
   
   def update_entries
@@ -24,10 +26,10 @@ class FeedSourcesController < ApplicationController
     @feed_source.update_entries!
     
     #@feed_entries = @feed_source.feed_entries.paginate(page: params[:page], :per_page => 10)
-    @feed_entries = @feed_source.feed_entries.paginate(page: 1, per_page:  10)
+    @feed_source_entries = @feed_source.feed_source_entries.paginate(page: params[:page], per_page:  10)
     
     respond_to do |format|
-      format.html { render 'show' }
+      format.html #{ render 'show' }
       format.js #update_entries.js.erb
     end
   end

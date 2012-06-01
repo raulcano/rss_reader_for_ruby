@@ -1,0 +1,14 @@
+$("#<%= dom_id(@feed_source_entry) %>").replaceWith("<%= escape_javascript(render 'feed_source_entry_unfolded', { :feed_source_entry => @feed_source_entry}) %>");
+$("#<%= dom_id(@feed_source_entry) %>").hide();
+$("#<%= dom_id(@feed_source_entry) %>").slideDown('slow');
+
+
+<% feed_style = (@feed_source_entry.is_read? ? "read_entry" : "unread_entry") %>
+$("#<%= dom_id(@feed_source_entry) %>").attr( 'class', '<%= feed_style%>' + ' unfolded' )
+
+
+// Set the element on the top of the page for comfortable reading and avoid the user 
+// to scroll
+$('html,body').animate({ 
+         scrollTop: $("#<%= dom_id(@feed_source_entry) %>").offset().top 
+    }, 500);

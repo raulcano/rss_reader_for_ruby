@@ -1,0 +1,4 @@
+$("#<%= dom_id(@feed_source_entry) %>").replaceWith("<%= escape_javascript(render 'feed_source_entry', { :feed_source_entry => @feed_source_entry}) %>");
+
+<% feed_style = (@feed_source_entry.is_read? ? "read_entry" : "unread_entry") %>
+$("#<%= dom_id(@feed_source_entry) %>").attr( 'class', '<%= feed_style%>' + ' folded' )

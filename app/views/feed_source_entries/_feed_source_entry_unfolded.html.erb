@@ -1,0 +1,20 @@
+<li id="<%= dom_id feed_source_entry %>">
+<span class="title"><%= link_to feed_source_entry.feed_entry.name,
+  			{ :controller => 'feed_source_entries',:action => 'fold', :id => feed_source_entry.id},
+  			{:remote => :true}
+  			 %>  
+  			 </span>
+<br/>
+ <br />
+    <br />
+  <h3><%= link_to feed_source_entry.feed_entry.name, feed_source_entry.feed_entry.url %></h3>
+  <span class="timestamp">
+    Published <%= time_ago_in_words(feed_source_entry.feed_entry.published_at) %> ago.
+    From <%= link_to feed_source_entry.feed_source.title, feed_source_entry.feed_source.url%>
+    </span>
+    <br />
+    <br />
+  <span class="summary">
+    <%= feed_source_entry.feed_entry.summary.sanitize.html_safe %>
+  </span>
+</li>

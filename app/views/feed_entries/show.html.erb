@@ -1,0 +1,22 @@
+<% provide(:title, @feed_entry.name) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= @feed_entry.name %>
+      </h1>
+    </section>
+  </aside>
+  <div class="span8">
+    <h3><%= link_to @feed_entry.name, @feed_entry.url %></h3>
+    <span class="timestamp">
+    Published <%= time_ago_in_words(@feed_entry.published_at) %> ago.
+    From <%= @feed_entry.feed_source_url %>
+    </span>
+    <br />
+    <br />
+    <span class="summary">
+    <%= @feed_entry.summary.sanitize.html_safe %>
+  </span>
+  </div>
+</div>

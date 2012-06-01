@@ -37,13 +37,14 @@
   </aside>
   <div class="span8">
   	 <ol class="feed_entries" id="feed_entries">
-    <% if @feed_entries.any? %>
-        <%= render @feed_entries %>
-        </ol>
-      	<%= will_paginate @feed_entries %>
+    <% if @feed_source_entries.any? %>
+        <%= render @feed_source_entries %>
      <% else %>
      	<i>No entries found. Try refreshing :)</i>
-      	</ol>
 	  <% end %>
+	  </ol>
+	   <span id="feed_entries_pagination">
+        <%= will_paginate @feed_source_entries %>
+       </span>
   </div>
 </div>

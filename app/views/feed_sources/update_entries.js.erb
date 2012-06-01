@@ -1,12 +1,11 @@
-$("#feed_entries_count").html("<%= '(' + @feed_entries.count.to_s + ')' %>")
-$("#feed_entries").html("<%= escape_javascript(render @feed_entries) %>").fadeIn
+$("#feed_entries_count").html("<%= '(' + @feed_source_entries.count.to_s + ')' %>")
+$("#feed_entries").html("<%= escape_javascript(render @feed_source_entries) %>").fadeIn
+// If the pagination does not exist yet, we append to 
+$("#feed_entries_pagination").replaceWith("<%= escape_javascript(will_paginate @feed_source_entries ) %>")
+
 
 // The code to show a loading animation while retrieving the feeds
 jQuery(function($) {
-  // create a convenient toggleLoading function
-  //var toggleLoading = function() { $("#loading").toggle() };
-  //var hideLoading = function() { $("#loading").hide() };
-  //var showLoading = function() { $("#loading").show() };
   
   var fadeInLoading = function() { $("#loading").fadeIn() };
   var fadeOutLoading = function() { $("#loading").fadeOut() };  

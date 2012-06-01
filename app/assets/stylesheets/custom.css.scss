@@ -222,6 +222,13 @@ aside {
   li {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
+    .unread_entry{
+      background-color: $yellow;
+    }
+    .read_entry{
+      color:  #e8e8e8;
+      background-color: $grayLight;
+    }
   }
    .title {
     font-weight: bold;

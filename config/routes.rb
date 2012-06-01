@@ -4,11 +4,18 @@ SampleApp::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
-  resources :feed_entries, only: [:destroy]
+  resources :feed_entries, only: [:show, :destroy]
   resources :feed_sources do
     collection do
       put :update_entries
     end
+  end
+  
+  resources :feed_source_entries do
+   collection do
+     get :fold
+     get :unfold
+   end
   end
   
   match '/signup',  to: 'users#new'

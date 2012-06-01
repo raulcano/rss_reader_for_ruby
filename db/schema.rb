@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(:version => 20120516234412) do
   create_table "feed_source_entries", :force => true do |t|
     t.integer  "feed_source_id"
     t.integer  "feed_entry_id"
-    t.integer  "is_starred"
-    t.integer  "is_read"
+    t.boolean  "is_starred", :default => false
+    t.boolean  "is_read", :default => false
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
