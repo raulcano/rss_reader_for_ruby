@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120516234412) do
+ActiveRecord::Schema.define(:version => 20120602163804) do
 
   create_table "feed_entries", :force => true do |t|
     t.string   "name"
@@ -25,18 +25,19 @@ ActiveRecord::Schema.define(:version => 20120516234412) do
   end
 
   add_index "feed_entries", ["feed_source_url"], :name => "index_feed_entries_on_feed_source_url"
+  add_index "feed_entries", ["published_at", "created_at"], :name => "index_feed_entries_on_published_at_and_created_at"
 
   create_table "feed_source_entries", :force => true do |t|
     t.integer  "feed_source_id"
     t.integer  "feed_entry_id"
-    t.boolean  "is_starred", :default => false
-    t.boolean  "is_read", :default => false
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.boolean  "is_starred",     :default => false
+    t.boolean  "is_read",        :default => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
   add_index "feed_source_entries", ["feed_entry_id"], :name => "index_feed_source_entries_on_feed_entry_id"
-  add_index "feed_source_entries", ["feed_source_id", "feed_entry_id"], :name => "index_feed_source_entries_on_feed_source_id_and_feed_entry_id", :unique => true
+  add_index "feed_source_entries", ["feed_source_id", "feed_entry_id"], :name => "altered_feed_source_entries_unique", :unique => true
   add_index "feed_source_entries", ["feed_source_id"], :name => "index_feed_source_entries_on_feed_source_id"
 
   create_table "feed_sources", :force => true do |t|
@@ -101,6 +102,7 @@ ActiveRecord::Schema.define(:version => 20120516234412) do
     t.boolean  "admin",           :default => false
   end
 
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
 end

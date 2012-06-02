@@ -27,6 +27,7 @@ class FeedSourceEntriesController < ApplicationController
   def fold
     # link to the js that renders the folded element
     @feed_source_entry = FeedSourceEntry.find(params[:id])
+    
     respond_to do |format|
       format.html # no idea what I have to write here
       format.js # fold.js.erb within the views folder of the FeedSourceEntries

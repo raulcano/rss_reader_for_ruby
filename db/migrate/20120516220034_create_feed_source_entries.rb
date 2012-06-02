@@ -11,6 +11,10 @@ class CreateFeedSourceEntries < ActiveRecord::Migration
    
     add_index :feed_source_entries, :feed_source_id
     add_index :feed_source_entries, :feed_entry_id
-    add_index :feed_source_entries, [:feed_source_id, :feed_entry_id], unique: true
+    # I set the name on this incex because otherwise, there would be 
+    # problems when migrating due to the automatically genarated
+    # name length
+    add_index :feed_source_entries, [:feed_source_id, :feed_entry_id], 
+            {unique: true, name: "feed_source_entries_unique"}  
   end
 end

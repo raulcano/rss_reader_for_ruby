@@ -218,21 +218,27 @@ aside {
 .feed_sources, .feed_entries{
   list-style: none;
   margin: 10px 0 0 0;
+  a{
+    color: black;
+  }
 
   li {
-    padding: 10px 0;
+    padding: 10px 0 10px 10px;
     border-top: 1px solid #e8e8e8;
-    .unread_entry{
-      background-color: $yellow;
+  }
+  .unread_entry{
+    .title {
+      font-weight: bold;
+      }
     }
-    .read_entry{
-      color:  #e8e8e8;
-      background-color: $grayLight;
+  .read_entry{
+    color:  $grayLight;
+    background-color: #F7F7F7;
+    a{
+     color: $grayLight 
     }
   }
-   .title {
-    font-weight: bold;
-  }
+   
   
 }
 
