@@ -1,0 +1,2 @@
+<% @feed_source_entry.unstar! %>
+$("#<%= dom_id(@feed_source_entry)+"_star" %>").replaceWith("<%= escape_javascript(render 'star_form', { :feed_source_entry => @feed_source_entry}) %>");

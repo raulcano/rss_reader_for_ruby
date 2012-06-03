@@ -20,5 +20,16 @@ class FeedSourceEntry < ActiveRecord::Base
         self.update_attribute(:is_read, false)
   end 
   
+  def is_starred?
+       self.is_starred
+  end
+
+  def star!
+        self.update_attribute(:is_starred, true)
+  end
+
+  def unstar!
+        self.update_attribute(:is_starred, false)
+  end
 end
 

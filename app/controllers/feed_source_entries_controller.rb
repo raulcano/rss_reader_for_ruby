@@ -45,4 +45,24 @@ class FeedSourceEntriesController < ApplicationController
     end
   end
   
+  def star
+    @feed_source_entry = FeedSourceEntry.find(params[:id])
+    @feed_source_entry.star!
+    
+    respond_to do |format|
+      format.html 
+      format.js
+    end
+  end
+  
+  def unstar
+    @feed_source_entry = FeedSourceEntry.find(params[:id])
+    @feed_source_entry.unstar!
+    
+    respond_to do |format|
+      format.html 
+      format.js
+    end
+  end
+  
 end

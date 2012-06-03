@@ -1,4 +1,5 @@
 <li id="<%= dom_id feed_source_entry %>">
+<%= render 'feed_source_entries/star_form', :feed_source_entry => feed_source_entry %>
 <span class="title"><%= link_to feed_source_entry.feed_entry.name,
   			{ :controller => 'feed_source_entries',:action => 'fold', :id => feed_source_entry.id},
   			{:remote => :true}

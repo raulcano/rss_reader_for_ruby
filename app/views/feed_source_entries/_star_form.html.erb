@@ -1,0 +1,6 @@
+<% star_style = (feed_source_entry.is_starred? ? "starred" : "unstarred") %>
+<% action = (feed_source_entry.is_starred? ? "unstar" : "star") %>
+<%= link_to image_tag( star_style + ".png", :border => 0  ),
+  			{:controller => 'feed_source_entries',:action => action, :id => feed_source_entry.id},
+  			{:remote => :true, :id => dom_id(feed_source_entry)+"_star" }
+  			 %>

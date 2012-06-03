@@ -15,6 +15,8 @@ SampleApp::Application.routes.draw do
    collection do
      get :fold
      get :unfold
+     get :star
+     get :unstar
    end
   end
   
