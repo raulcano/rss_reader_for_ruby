@@ -1,5 +1,5 @@
 <% provide(:title, @feed_source.title) %>
-<div class="row">
+ <div class="row">
   <aside class="span4">
     <section>
       <h1>
@@ -44,7 +44,10 @@
 	  <% end %>
 	  </ol>
 	   <span id="feed_entries_pagination">
-        <%= will_paginate @feed_source_entries %>
+        <%=  will_paginate @feed_source_entries %>
        </span>
+       <!-- <p id="loading_pagination">
+        Loading more results...
+       </p> -->
   </div>
 </div>

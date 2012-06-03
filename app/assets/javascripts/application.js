@@ -12,6 +12,27 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require bootstrap
 //= require_tree .
-//= require jquery-ui
+
+
+
+$.ajaxSetup({ 
+  'beforeSend': function(xhr) {
+    xhr.setRequestHeader("Accept","text/javascript")} 
+});
+
+$.bottomlessPagination({objName:'entries', callback:function(){
+      //highlight current row
+      $(".feed_entries li").hover(function() {
+        $(this).addClass("hover");
+      }, function() {
+        $(this).removeClass("hover");
+      });
+    }});
+
+$(document).ready(
+	// in case of an infinite scrolling
+	checkScroll
+);
