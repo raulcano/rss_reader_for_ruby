@@ -16,6 +16,7 @@ class FeedSourcesController < ApplicationController
     # We have to pass the list of feed_source_entries, since it contains the attributes
     # of each feed_entry belonging to this feed_source
     @feed_source_entries = @feed_source.feed_source_entries.paginate(page: params[:page], :per_page => 10)
+    
   end
   
   def update_entries

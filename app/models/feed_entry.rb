@@ -2,7 +2,7 @@ class FeedEntry < ActiveRecord::Base
   include Feedzirra
   attr_accessible  :name, :summary, :url, :published_at, :guid, :feed_source_url
   belongs_to :feed_source
-  
+  has_many :feed_source_entries
   default_scope order: 'feed_entries.published_at DESC'
   
   def self.update_from_feed(feed_url)
