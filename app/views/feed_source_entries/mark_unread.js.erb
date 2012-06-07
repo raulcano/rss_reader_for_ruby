@@ -1,0 +1,3 @@
+<% @feed_source_entry.mark_unread! %>
+// We render the feed_source_entry then
+$("#<%= dom_id(@feed_source_entry) %>").replaceWith("<%= escape_javascript(render 'feed_source_entry', { :feed_source_entry => @feed_source_entry}) %>");

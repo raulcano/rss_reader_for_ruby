@@ -1,0 +1,6 @@
+<% link_text = "[ " + (feed_source_entry.is_read? ? "Mark as unread" : "Mark as read") + " ]" %>
+<% action = (feed_source_entry.is_read? ? "mark_unread" : "mark_read") %>
+<%= link_to link_text,
+  			{:controller => 'feed_source_entries',:action => action, :id => feed_source_entry.id},
+  			{:remote => :true, :id => dom_id(feed_source_entry)+"mark_read" }
+  			 %>

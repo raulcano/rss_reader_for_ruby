@@ -17,6 +17,8 @@ SampleApp::Application.routes.draw do
      get :unfold
      get :star
      get :unstar
+     get :mark_read
+     get :mark_unread
    end
   end
   

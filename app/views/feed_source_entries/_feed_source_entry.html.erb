@@ -13,4 +13,6 @@
   <span class="timestamp">
     Published <%= time_ago_in_words(feed_source_entry.feed_entry.published_at) %> ago.
   </span>
+  <br />
+  <%= render 'feed_source_entries/mark_read_link', :feed_source_entry => feed_source_entry %>
 </li>

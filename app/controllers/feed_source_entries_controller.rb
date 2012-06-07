@@ -7,7 +7,7 @@ class FeedSourceEntriesController < ApplicationController
     @feed_source_entry.mark_read!
     
     respond_to do |format|
-      format.html # no idea what I have to write here
+      format.html 
       format.js #mark_read.js.erb within the views folder of the FeedSourceEntries
     end
   end
@@ -19,7 +19,7 @@ class FeedSourceEntriesController < ApplicationController
     @feed_source_entry.mark_unread!
     
     respond_to do |format|
-      format.html # no idea what I have to write here
+      format.html 
       format.js #mark_read.js.erb within the views folder of the FeedSourceEntries
     end
   end
