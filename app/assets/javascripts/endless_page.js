@@ -1,14 +1,13 @@
 var currentPage = 1;
-var feedSourceId = 2; // Temporal value until I figure out the best way to pass the value
 function checkScroll() {
+  var feedSourceId = $("#feed_source_id").val();
   if (nearBottomOfPage()) {
     currentPage++;
     $.ajax({url: "/feed_sources/" + feedSourceId + "?page=" + currentPage,
     		async: true, 
     		type:"get"})
   } else {
-  	
-    setTimeout("checkScroll()", 2000);
+    setTimeout(checkScroll);
   }
 }
 
