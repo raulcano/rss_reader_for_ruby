@@ -1,0 +1,6 @@
+$("#feed_entries").append("<%= escape_javascript(render @feed_source_entries ) %>");
+<% if @feed_source_entries.total_pages > @feed_source_entries.current_page %>
+  checkScroll(<%= @feed_source.id %>);	
+<% else %>
+	$('#loading_pagination').hide();
+<% end %>

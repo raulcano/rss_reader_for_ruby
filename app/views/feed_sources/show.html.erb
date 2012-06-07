@@ -1,5 +1,5 @@
 <% provide(:title, @feed_source.title) %>
-<div class="row">
+ <div class="row">
   <aside class="span4">
     <section>
       <h1>
@@ -10,7 +10,7 @@
 		<% end %>
 		</span>
       </h1>
-	  
+	  <%= hidden_field_tag "feed_source_id", @feed_source.id, { :id => "feed_source_id" } %>
 	  <span class="hashtags">
 	   <%= @feed_source.hashtags %>
 	   </span>
@@ -32,7 +32,9 @@
 					
 		
   <% end %>
-  <span id="loading" style="display: none; "><img alt="Ajax-loader" src="/assets/ajax-loader.gif"> Loading...</span>
+  <%= render 'shared/ajax_loader', 
+  		{ loading_message: 'downloading...', 
+  		  loading_html_attributes: "id=\"loading\" style=\"display: none;\""} %> 
     </section>
   </aside>
   <div class="span8">
@@ -43,8 +45,10 @@
      	<i>No entries found. Try refreshing :)</i>
 	  <% end %>
 	  </ol>
-	   <span id="feed_entries_pagination">
-        <%= will_paginate @feed_source_entries %>
-       </span>
+       <br />
+       <br />
+       <%= render 'shared/ajax_loader', 
+  		{ loading_message: 'loading more results...', 
+  		  loading_html_attributes: "id=\"loading_pagination\""} %> 	  
   </div>
 </div>

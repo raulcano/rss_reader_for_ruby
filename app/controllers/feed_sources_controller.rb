@@ -17,6 +17,10 @@ class FeedSourcesController < ApplicationController
     # of each feed_entry belonging to this feed_source
     @feed_source_entries = @feed_source.feed_source_entries.paginate(page: params[:page], :per_page => 10)
     
+    respond_to do |format|
+      format.html 
+      format.js
+    end
   end
   
   def update_entries
@@ -28,9 +32,8 @@ class FeedSourcesController < ApplicationController
     
     #@feed_entries = @feed_source.feed_entries.paginate(page: params[:page], :per_page => 10)
     @feed_source_entries = @feed_source.feed_source_entries.paginate(page: params[:page], per_page:  10)
-    
     respond_to do |format|
-      format.html #{ render 'show' }
+      format.html { render 'show' }
       format.js #update_entries.js.erb
     end
   end
