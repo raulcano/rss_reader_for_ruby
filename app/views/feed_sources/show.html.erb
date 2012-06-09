@@ -29,9 +29,18 @@
 	    			:remote => true) do |f| %>
 	  	 				 <%= f.submit "Refresh", class: "btn btn-small btn-secondary" %>
 					<% end %>
-					
 		
-  <% end %>
+		
+					
+<%= form_tag feed_source_path(@feed_source), :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+		
+		
+  <% end # if current user is the one calling the action %>
   <%= render 'shared/ajax_loader', 
   		{ loading_message: 'downloading...', 
   		  loading_html_attributes: "id=\"loading\" style=\"display: none;\""} %> 
@@ -45,6 +54,8 @@
      	<i>No entries found. Try refreshing :)</i>
 	  <% end %>
 	  </ol>
+	  <%= #will_paginate @feed_source_entries 
+	  %>
        <br />
        <br />
        <%= render 'shared/ajax_loader', 

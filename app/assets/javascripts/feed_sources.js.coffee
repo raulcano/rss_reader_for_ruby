@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery.ajaxSetup beforeSend: (xhr) ->
-  xhr.setRequestHeader "Accept", "text/javascript"
+   xhr.setRequestHeader "Accept", "text/javascript"
 
   
 jQuery(document).ready ->

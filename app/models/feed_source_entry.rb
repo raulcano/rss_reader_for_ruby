@@ -42,5 +42,13 @@ class FeedSourceEntry < ActiveRecord::Base
   def unstar!
         self.update_attribute(:is_starred, false)
   end
+  
+  def self.search(search)
+    if search
+      where('name LIKE ?', "%#{search}%")
+    else
+      scoped
+    end
+  end
 end
 

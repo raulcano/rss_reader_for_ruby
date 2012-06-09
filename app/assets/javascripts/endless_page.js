@@ -3,7 +3,10 @@ function checkScroll() {
   var feedSourceId = $("#feed_source_id").val();
   if (nearBottomOfPage()) {
     currentPage++;
-    $.ajax({url: "/feed_sources/" + feedSourceId + "?page=" + currentPage,
+    var search = $("#search").val();
+    //we have to include in this request the search parameters
+    $.ajax({url: "/feed_sources/" + feedSourceId + "?page=" + currentPage
+    		+ "&search=" + search + "&utf8=",
     		async: true, 
     		type:"get"})
   } else {
