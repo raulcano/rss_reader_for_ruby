@@ -7,7 +7,7 @@ function checkScroll() {
     		async: true, 
     		type:"get"})
   } else {
-    setTimeout(checkScroll);
+    setTimeout(checkScroll, 2000);
   }
 }
 
