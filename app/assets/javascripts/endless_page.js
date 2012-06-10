@@ -1,6 +1,5 @@
 var currentPage = 1;
 function checkScroll() {
-  //if (typeof currentPage == "undefined") {  currentPage = 1;}
   var feedSourceId = $("#feed_source_id").val();
   if (nearBottomOfPage()) {
     currentPage++;
@@ -11,7 +10,7 @@ function checkScroll() {
     		async: true, 
     		type:"get"})
   } else {
-    setTimeout(checkScroll, 5000);
+    setTimeout(checkScroll, 1000);
   }
 }
 

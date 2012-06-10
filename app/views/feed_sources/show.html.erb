@@ -43,7 +43,8 @@
 			 :remote => true do %>
   <p>
   	<%= hidden_field_tag :submit, 'search' %>
-    <%= text_field_tag :search, params[:search], :placeholder => 'Enter your search string' %>
+    <%= text_field_tag :search, params[:search], 
+    				:placeholder => 'Enter your search string' %>
   </p>
 <% end %>		
   <% end # if current user is the one calling the action 
@@ -61,8 +62,6 @@
      	<i>No entries found. Try refreshing :)</i>
 	  <% end %>
 	  </ol>
-	  <%= #will_paginate @feed_source_entries 
-	  %>
        <br />
        <br />
        <%= render 'shared/ajax_loader', 
