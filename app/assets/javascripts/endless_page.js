@@ -1,16 +1,17 @@
 var currentPage = 1;
 function checkScroll() {
+  //if (typeof currentPage == "undefined") {  currentPage = 1;}
   var feedSourceId = $("#feed_source_id").val();
   if (nearBottomOfPage()) {
     currentPage++;
     var search = $("#search").val();
     //we have to include in this request the search parameters
     $.ajax({url: "/feed_sources/" + feedSourceId + "?page=" + currentPage
-    		+ "&search=" + search + "&utf8=",
+    		+ "&search=" + search + "&utf8=✓&submit=pagination",
     		async: true, 
     		type:"get"})
   } else {
-    setTimeout(checkScroll, 2000);
+    setTimeout(checkScroll, 5000);
   }
 }
 

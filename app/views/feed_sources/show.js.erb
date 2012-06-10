@@ -1,6 +1,21 @@
-$("#feed_entries").append("<%= escape_javascript(render @feed_source_entries ) %>");
+// We check if this this code is called from the "search"
+// If it is a call from the search, we have to replace the content,
+// if it is a call from the endless pagination, we have to append
+//alert('currentPage:'+currentPage+
+//'--total_pages:'+'<%=@feed_source_entries.total_pages %>'+
+//'--current_page:'+'<%=@feed_source_entries.current_page %>');
+
+<% if params[:submit] == "search" %>
+	currentPage = 1;
+	<% @feed_source_entries.current_page = 1 %>
+	$("#feed_entries").html("<%= escape_javascript(render @feed_source_entries ) %>");
+<% elsif params[:submit] == "pagination" %>
+	$("#feed_entries").append("<%= escape_javascript(render @feed_source_entries ) %>");
+<% end %>
+
 <% if @feed_source_entries.total_pages > @feed_source_entries.current_page %>
-  checkScroll(<%= @feed_source.id %>);	
+	$('#loading_pagination').show();
+	checkScroll();	
 <% else %>
 	$('#loading_pagination').hide();
 <% end %>

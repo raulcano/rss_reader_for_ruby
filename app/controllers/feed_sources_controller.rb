@@ -17,9 +17,8 @@ class FeedSourcesController < ApplicationController
     # of each feed_entry belonging to this feed_source
     #@feed_source_entries = @feed_source.feed_source_entries.paginate(page: params[:page], :per_page => 10)
    
-   # To search on the title of the feed_source_entries
-    @feed_source_entries = @feed_source.feed_source_entries.search(params[:search]).paginate(page: params[:page], :per_page => 10)
-    
+    # To search on the title of the feed_source_entries
+    @feed_source_entries = @feed_source.feed_source_entries.search(params[:search]).paginate(page: params[:page], :per_page => 10) 
     respond_to do |format|
       format.html 
       format.js

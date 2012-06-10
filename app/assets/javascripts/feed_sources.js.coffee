@@ -13,6 +13,17 @@ jQuery(document).ready ->
   feedSourceId = jQuery("#feed_source_id").val()
   checkScroll()  if typeof feedSourceId isnt "undefined"
   
+  # We enable the search box to be submitted by AJAX on every key stroke
+  $("#feed_entries_search input").keyup ->
+    $.get $("#feed_entries_search").attr("action"), $("#feed_entries_search").serialize(), null, "script"
+    false
+  
+  # This is to give AJAX behaviour to the search form
+  # --since we use data-remote tags, we don´t need the following lines
+  #$("#feed_entries_search").submit ->
+  #  $.get @action, $(this).serialize(), null, "script"
+  #  false
+  
   # This has to do with the action of updating entries, so the ajax loader is shown/hidden
   fadeInLoading = ->
     $("#loading").fadeIn()

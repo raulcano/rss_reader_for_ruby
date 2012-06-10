@@ -17,7 +17,7 @@
 	   <% if current_user?(@feed_source.user) %>
 	   <span class="feed_source_links"> [
 	   <%= link_to "edit", edit_feed_source_path(@feed_source) %> | 
-	<%= link_to "delete", @feed_source, method:  :delete,
+		<%= link_to "delete", @feed_source, method:  :delete,
                                      confirm: "You sure?",
                                      title:   @feed_source.title %>
 		]
@@ -27,20 +27,27 @@
 					:html => { :id => "feed_source_refresh" },
 					:url => url_for(:controller => 'feed_sources', :action => 'update_entries', :id => @feed_source.id),
 	    			:remote => true) do |f| %>
-	  	 				 <%= f.submit "Refresh", class: "btn btn-small btn-secondary" %>
+	  	 				 <%= f.submit "Refresh", class: "btn btn-big btn-primary" %>
 					<% end %>
-		
-		
-					
-<%= form_tag feed_source_path(@feed_source), :method => 'get' do %>
+		<!-- <%= form_for( @feed_source, 
+					:html => { :id => "feed_source_search" },
+					:url => url_for(:controller => 'feed_sources', :action => 'show', :id => @feed_source.id),
+	    			:remote => true) do |f| %>
+	  	 				 <%= text_field_tag :search, params[:search] %>
+	  	 				 <%= f.submit "Search", class: "btn btn-small btn-secondary" %>
+					<% end %> -->
+			
+				
+<%= form_tag feed_source_path(@feed_source), 
+			:method => 'get', :id => 'feed_entries_search',
+			 :remote => true do %>
   <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
+  	<%= hidden_field_tag :submit, 'search' %>
+    <%= text_field_tag :search, params[:search], :placeholder => 'Enter your search string' %>
   </p>
-<% end %>
-		
-		
-  <% end # if current user is the one calling the action %>
+<% end %>		
+  <% end # if current user is the one calling the action 
+  %>
   <%= render 'shared/ajax_loader', 
   		{ loading_message: 'downloading...', 
   		  loading_html_attributes: "id=\"loading\" style=\"display: none;\""} %> 
