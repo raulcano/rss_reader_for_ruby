@@ -1,5 +1,5 @@
 class FeedSource < ActiveRecord::Base
-  attr_accessible :folder_id, :hashtags, :title, :url
+  attr_accessible :folder_id, :hashtags, :title, :url, :tag_list
   belongs_to :user
   has_many :feed_source_entries, dependent: :destroy
   has_many :feed_entries, through: :feed_source_entries
@@ -9,6 +9,8 @@ class FeedSource < ActiveRecord::Base
   
   validates :url, presence: true, 
 					format: { with: URI::ABS_URI }
+					
+	acts_as_taggable_on :tags
   
   default_scope order: 'feed_sources.created_at DESC'
   

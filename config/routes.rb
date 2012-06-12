@@ -8,6 +8,7 @@ SampleApp::Application.routes.draw do
   resources :feed_sources do
     collection do
       put :update_entries
+      get :autocomplete_tag_name
     end
   end
   

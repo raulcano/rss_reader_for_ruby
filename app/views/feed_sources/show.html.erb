@@ -11,8 +11,8 @@
 		</span>
       </h1>
 	  <%= hidden_field_tag "feed_source_id", @feed_source.id, { :id => "feed_source_id" } %>
-	  <span class="hashtags">
-	   <%= @feed_source.hashtags %>
+	  <span class="tag_list">
+	   <%= @feed_source.tag_list %>
 	   </span>
 	   <% if current_user?(@feed_source.user) %>
 	   <span class="feed_source_links"> [

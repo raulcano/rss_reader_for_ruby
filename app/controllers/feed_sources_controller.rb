@@ -3,6 +3,8 @@ class FeedSourcesController < ApplicationController
   before_filter :signed_in_user, only: [:create, :destroy]
   before_filter :correct_user,   only: [:edit, :update, :destroy]
   
+  autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag'
+  
   def index
 	# This code is incomplete
 	# We have to show the feed sources belonging to a selected folder

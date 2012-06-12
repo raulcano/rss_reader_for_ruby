@@ -40,3 +40,7 @@ gem 'the_sortable_tree'
 # Gems for Feedzirra
 gem 'feedzirra'
 gem 'curb'
+
+# Gems for the tags structure
+gem 'acts-as-taggable-on'
+gem 'rails3-jquery-autocomplete'
