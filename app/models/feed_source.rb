@@ -1,5 +1,5 @@
 class FeedSource < ActiveRecord::Base
-  attr_accessible :folder_id, :hashtags, :title, :url, :tag_list
+  attr_accessible :folder_id, :title, :url, :tag_list
   belongs_to :user
   has_many :feed_source_entries, dependent: :destroy
   has_many :feed_entries, through: :feed_source_entries

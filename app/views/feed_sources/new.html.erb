@@ -12,7 +12,6 @@
       <%= f.text_field :url %>
 
 	  <%= f.label :tag_list, "Tags describing the feed source" %>
-      <%= f.text_field :hashtags %>
       <%= f.autocomplete_field :tag_list, autocomplete_tag_name_feed_sources_path, :"data-delimiter" => ', ' %> 
       
 	  <%= f.label :folder_id %>
