@@ -3,8 +3,13 @@ $("#<%= dom_id(@feed_source_entry) %>").hide();
 $("#<%= dom_id(@feed_source_entry) %>").slideDown('slow');
 
 
-<% feed_style = (@feed_source_entry.is_read? ? "read_entry" : "unread_entry") %>
-$("#<%= dom_id(@feed_source_entry) %>").attr( 'class', '<%= feed_style%>' + ' unfolded' )
+//For the unfolded elements we don´t add the class read_entry or unread_entry,
+//otherwise, the unfolded element you are reading will be mark as read and styled accordingly
+// what is quite uncomfortable
+//<%  feed_style = (@feed_source_entry.is_read? ? "read_entry" : "unread_entry") %>
+//$("#<%= dom_id(@feed_source_entry) %>").attr( 'class', '<%= feed_style%>' + ' unfolded' )
+
+$("#<%= dom_id(@feed_source_entry) %>").attr( 'class', 'unfolded' )
 
 
 // Set the element on the top of the page for comfortable reading and avoid the user 
