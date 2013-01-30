@@ -59,14 +59,12 @@ ActiveRecord::Schema.define(:version => 20120612213010) do
     t.integer  "depth"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "user_id"
   end
 
   add_index "folders", ["depth"], :name => "index_folders_on_depth"
   add_index "folders", ["lft"], :name => "index_folders_on_lft"
   add_index "folders", ["parent_id"], :name => "index_folders_on_parent_id"
   add_index "folders", ["rgt"], :name => "index_folders_on_rgt"
-  add_index "folders", ["user_id"], :name => "index_folders_on_user_id"
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
