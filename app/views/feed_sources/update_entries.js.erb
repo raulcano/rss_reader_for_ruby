@@ -1,6 +1,5 @@
 $("#feed_entries_count").html("<%= '(' + @feed_source_entries.count.to_s + ')' %>")
 $("#feed_entries").html("<%= escape_javascript(render @feed_source_entries) %>").fadeIn
 // Reset the search form
-$('#search').each (function(){
-  this.reset();
-});
+$('#search').val("");
+
