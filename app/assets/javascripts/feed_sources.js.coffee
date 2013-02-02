@@ -28,5 +28,10 @@ jQuery(document).ready ->
   fadeInLoading = ->
     $("#loading").fadeIn()
   fadeOutLoading = ->
-    $("#loading").fadeOut()   
+    $("#loading").fadeOut()
+  fadeInOutNewEntriesNotification= ->
+    $("#new_items_notification").fadeIn "slow", ->
+      $("#new_items_notification").fadeOut 5000
+    
   $("#feed_source_refresh").bind("ajax:beforeSend", fadeInLoading).bind "ajax:complete", fadeOutLoading
+  $("#feed_source_refresh").bind "ajax:complete", fadeInOutNewEntriesNotification
