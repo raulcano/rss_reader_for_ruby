@@ -1,5 +1,9 @@
 class FeedSource < ActiveRecord::Base
+  
   attr_accessible :folder_id, :title, :url, :tag_list
+  
+  attr_accessor :new_entries
+  
   belongs_to :user
   has_many :feed_source_entries, dependent: :destroy
   has_many :feed_entries, through: :feed_source_entries
@@ -27,10 +31,10 @@ class FeedSource < ActiveRecord::Base
   end
   
   def update_entries!
+    @new_entries = 0
     #1.- Add the new entries to the feed_entries table
     # Here we fetch all the feed entries belonging to this feed source and this user
     new_entries = FeedEntry.update_from_feed(url)
-    
     # Here we add the relationships to EVERY feed_source that shares the same url
     # 1.1 We obtain every feed source that matches the url
     matching_sources = FeedSource.find_all_by_url(url)
@@ -39,10 +43,14 @@ class FeedSource < ActiveRecord::Base
       #update relationships in the source s with the new entries
       new_entries.each do |entry|
         feed_entry = FeedEntry.find_by_guid(entry.entry_id)
-        s.add_entry!(feed_entry) unless s.has_entry?(feed_entry)
+        if !s.has_entry?(feed_entry)
+          @new_entries++
+          s.add_entry!(feed_entry) 
+        end
       end
     end
     # We want that this method return the new entries
     new_entries
   end
+  
 end

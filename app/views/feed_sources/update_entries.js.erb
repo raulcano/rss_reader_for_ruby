@@ -1,5 +1,9 @@
-$("#feed_entries_count").html("<%= '(' + @feed_source_entries.count.to_s + ')' %>")
-$("#feed_entries").html("<%= escape_javascript(render @feed_source_entries) %>").fadeIn
-// Reset the search form
-$('#search').val("");
+// If there were new entries, we do the changes, otherwise, everything stays the same
+<% if @feed_source.new_entries > 0 %>
+	$("#feed_entries_count").html("<%= '(' + @feed_source_entries.count.to_s + ')' %>")
+	$("#feed_entries").html("<%= escape_javascript(render @feed_source_entries) %>").fadeIn
+	$('#search').val("");
+<% end %> 
 
+// We should add somewhere here a counter with the new entries added
+// ...
