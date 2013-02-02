@@ -44,7 +44,7 @@ class FeedSource < ActiveRecord::Base
       new_entries.each do |entry|
         feed_entry = FeedEntry.find_by_guid(entry.entry_id)
         if !s.has_entry?(feed_entry)
-          @new_entries++
+          @new_entries = @new_entries + 1;
           s.add_entry!(feed_entry) 
         end
       end

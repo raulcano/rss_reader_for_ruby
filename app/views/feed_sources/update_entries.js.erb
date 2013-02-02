@@ -3,9 +3,7 @@
 	$("#feed_entries_count").html("<%= '(' + @feed_source_entries.count.to_s + ')' %>")
 	$("#feed_entries").html("<%= escape_javascript(render @feed_source_entries) %>").fadeIn
 	$('#search').val("");
-	$("#new_items_notification").html("<%= 'There were ' + @feed_source.new_entries.to_s + ' new entries added.' %>")
+	$("#new_items_notification").html("<%=  'There were ' + @feed_source.new_entries.to_s + ' new entries added.' %>")
 <% else %>
 	$("#new_items_notification").html("<%= 'No new entries added.' %>")
 <% end %> 
-
-// A counter with the new entries added
