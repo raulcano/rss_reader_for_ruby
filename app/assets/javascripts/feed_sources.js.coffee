@@ -18,12 +18,6 @@ jQuery(document).ready ->
     $.get $("#feed_entries_search").attr("action"), $("#feed_entries_search").serialize(), null, "script"
     false
   
-  # This is to give AJAX behaviour to the search form
-  # --since we use data-remote tags, we don´t need the following lines
-  #$("#feed_entries_search").submit ->
-  #  $.get @action, $(this).serialize(), null, "script"
-  #  false
-  
   # This has to do with the action of updating entries, so the ajax loader is shown/hidden
   fadeInLoading = ->
     $("#loading").fadeIn()

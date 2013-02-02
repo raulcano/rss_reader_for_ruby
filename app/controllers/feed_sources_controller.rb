@@ -35,16 +35,7 @@ class FeedSourcesController < ApplicationController
     @feed_source = current_user.feed_sources.find(params[:id])
     
     @feed_source.update_entries!
-
-    
-    #if there was any new addition, we load @feed_source_entries with the entries, like a normal show, 
-    # otherwise, we leave the page as it was before the load
-    
-    #IMPORTANT, if there was no new entry and the user had  filtered the display with the search box, 
-    # if we don´t update the entries then, the search box will be cleared but the displayed entries will remain filtered
-    # suggestion, create a method on the @feed_source called .count_new_entries() that will 
-    # be set to 0, 1, 2, 3, 4... after every call to update_entries
-    
+       
     if @feed_source.new_entries > 0
      @feed_source_entries = @feed_source.feed_source_entries.paginate(page: params[:page], per_page:  10)
     end
