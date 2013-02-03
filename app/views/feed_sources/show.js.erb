@@ -4,12 +4,12 @@
 //console.log('currentPage:'+currentPage+
 //'--total_pages:'+'<%=@feed_source_entries.total_pages %>'+
 //'--current_page:'+'<%=@feed_source_entries.current_page %>');
-<% if params[:submit] == "search" %>
+<% if params[:submit] == "search"  %>
 	currentPage = 1;
 	<% @feed_source_entries.current_page = 1 %>
 	$("#feed_entries").html("<%= escape_javascript(render @feed_source_entries ) %>");
 <% elsif params[:submit] == "pagination" %>
-	$("#feed_entries").append("<%= escape_javascript(render @feed_source_entries ) %>");
+		$("#feed_entries").append("<%= escape_javascript(render @feed_source_entries ) %>");
 <% end %>
 
 <% if @feed_source_entries.total_pages > @feed_source_entries.current_page %>
