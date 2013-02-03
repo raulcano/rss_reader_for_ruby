@@ -5,14 +5,21 @@
 jQuery.ajaxSetup beforeSend: (xhr) ->
    xhr.setRequestHeader "Accept", "text/javascript"
 
+showSearchIcon = ->
+  $("#search").css "background-image", "url(/assets/ajax-loader.gif)"
+hideSearchIcon = ->
+  $("#search").css "background-image", "none"  
+
 timer = 500 # must be global referring to keyup_handler context
 keyup_handler = (event) ->
-  window.clearTimeout timer  unless timer is `undefined`
+  window.clearTimeout timer  if timer isnt `undefined`
   timer = window.setTimeout(->
-      $.get $("#feed_entries_search").attr("action"), $("#feed_entries_search").serialize(), null, "script"
-      false
-    , 500)
- 
+    showSearchIcon()
+    $.get $("#feed_entries_search").attr("action"), $("#feed_entries_search").serialize(), hideSearchIcon, "script"
+    false
+  , 500)
+
+
 jQuery(document).ready ->
   
   # The following checks if there is any input field that passes the 
@@ -22,8 +29,7 @@ jQuery(document).ready ->
   checkScroll()  if typeof feedSourceId isnt "undefined"  
     
   # We enable the search box to be submitted by AJAX on every key stroke
-  jQuery("#feed_entries_search input").keyup(keyup_handler)
-
+  $("#feed_entries_search input").keyup keyup_handler
   
   # This has to do with the action of updating entries, so the ajax loader is shown/hidden
   fadeInLoading = ->
