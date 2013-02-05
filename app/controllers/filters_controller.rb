@@ -8,10 +8,6 @@ class FiltersController < ApplicationController
     @filters = current_user.filters
   end
   
-  def show
-    @filter = current_user.filters.find(params[:id])
-  end
-  
   def new
    @filter = current_user.filters.build
   end
