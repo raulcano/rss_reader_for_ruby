@@ -1,7 +1,6 @@
 <%= provide(:title, 'All filters') %>
 <h1>All filters</h1>
 <%= link_to "Add filter", new_filter_path, {class: "btn btn-small btn-primary index-btn"} %>
-<p>&nbsp;</p>
 <ul class="filters">
     <%= render @filters %>
 </ul>

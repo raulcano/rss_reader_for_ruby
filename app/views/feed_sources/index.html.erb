@@ -1,6 +1,7 @@
 <%= provide(:title, 'All feed sources') %>
 <h1>All feed sources</h1>
-<%= link_to "Add subscription", new_feed_source_path %>
+<%= link_to "Add subscription", new_feed_source_path, {class: "btn btn-small btn-primary index-btn"} %>
+<p>&nbsp;</p>
 <ul class="feed_sources">
     <%= render @feed_sources %>
 </ul>
