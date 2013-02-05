@@ -1,0 +1,22 @@
+<li>
+  <h3>
+  <span class="title"><%= link_to filter.title, edit_filter_path(filter) %></span>
+  </h3>
+  <span class="url">
+    <%= strip_tags(filter.url)%>
+  </span>
+  <span class="timestamp">
+     | Added <%= time_ago_in_words(filter.created_at) %> ago.
+  </span>
+  <% if current_user?(filter.user) %>
+    <%= link_to "edit", edit_filter_path(filter) %> | 
+	<%= link_to "delete", filter, method:  :delete,
+                                     confirm: "Are you sure?",
+                                     title:   filter.title %>
+  <% end %>
+  <br />
+  <br />
+  <span class="description">
+    <%= strip_tags(filter.description)%>
+  </span>
+</li>

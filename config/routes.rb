@@ -5,6 +5,7 @@ SampleApp::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
   resources :feed_entries, only: [:show, :destroy]
+  resources :filters, except: [:show]
   resources :feed_sources do
     collection do
       put :update_entries

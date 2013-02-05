@@ -3,17 +3,17 @@ class FeedSourcesController < ApplicationController
   before_filter :signed_in_user, only: [:create, :destroy]
   before_filter :correct_user,   only: [:edit, :update, :destroy]
   
-  autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag'
+  
   
   def index
-	# This code is incomplete
-	# We have to show the feed sources belonging to a selected folder
-	# So we should capture here the parameter regarding the folder and filter by it
-	@feed_sources = current_user.feed_sources
+  # This code is incomplete
+  # We have to show the feed sources belonging to a selected folder
+  # So we should capture here the parameter regarding the folder and filter by it
+  @feed_sources = current_user.feed_sources
   end
   
   def show
-	  # We show the title of the source, a list of its feed entries and a button to refresh
+    # We show the title of the source, a list of its feed entries and a button to refresh
     @feed_source = current_user.feed_sources.find(params[:id])
     # We have to pass the list of feed_source_entries, since it contains the attributes
     # of each feed_entry belonging to this feed_source
@@ -47,29 +47,29 @@ class FeedSourcesController < ApplicationController
   end
   
   def new
-	 @feed_source = current_user.feed_sources.build
+   @feed_source = current_user.feed_sources.build
   end
   
   def create
     @feed_source = current_user.feed_sources.build(params[:feed_source])
-		
+    
     if @feed_source.save
       #@feed_source.update_entries! #disabled temporary, this must not be commented normally
       flash[:success] = "Feed source added!"
-	    redirect_to @feed_source
+      redirect_to @feed_source
     else
-	     render 'new'
+       render 'new'
     end
-	
+  
   end
   
   def edit
-	 @feed_source = current_user.feed_sources.find(params[:id])		
+   @feed_source = current_user.feed_sources.find(params[:id])   
   end
   
   def update
     @feed_source = current_user.feed_sources.find(params[:id])
-	   if @feed_source.update_attributes(params[:feed_source])
+     if @feed_source.update_attributes(params[:feed_source])
       flash[:success] = "Profile updated"
       redirect_to @feed_source
     else
@@ -79,7 +79,7 @@ class FeedSourcesController < ApplicationController
   
   
   def destroy
-	  @feed_source = current_user.feed_sources.find(params[:id])
+    @feed_source = current_user.feed_sources.find(params[:id])
     if FeedSource.find_all_by_url(@feed_source.url).count == 1 
       # We assume this will delete both the entries and the relationships
       @feed_source.feed_entries.destroy

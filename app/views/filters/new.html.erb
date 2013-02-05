@@ -1,0 +1,20 @@
+<%= provide(:title, 'Add filter') %>
+<h1>Add filter</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+  <%= form_for(@filter) do |f| %>
+	  <%= render 'shared/error_messages', object: f.object %>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+
+      <%= f.label :url %>
+      <%= f.text_field :url %>
+      
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+
+      <%= f.submit "Add", class: "btn btn-large btn-primary" %>
+    <% end %>  
+  </div>
+</div>

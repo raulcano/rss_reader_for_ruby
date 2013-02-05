@@ -1,0 +1,6 @@
+<%= provide(:title, 'All filters') %>
+<h1>All filters</h1>
+<%= link_to "Add filter", new_filter_path %>
+<ul class="filters">
+    <%= render @filters %>
+</ul>
