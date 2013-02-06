@@ -5,13 +5,15 @@ function checkScroll() {
   if (nearBottomOfPage()) {
     currentPage++;
     var search = $("#search").val();
+    $('#loading_pagination').show();
     //we have to include in this request the search parameters
     $.ajax({url: "/feed_sources/" + feedSourceId + "?page=" + currentPage
     		+ "&search=" + search + "&utf8=✓&submit=pagination",
     		async: true, 
     		type:"get"})
+     .done(function(){$('#loading_pagination').hide()});
   } else {
-    setTimeout(checkScroll, 2000);
+    setTimeout(checkScroll, 1000);
   }
 }
 

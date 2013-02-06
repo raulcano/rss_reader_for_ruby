@@ -13,8 +13,5 @@
 <% end %>
 
 <% if @feed_source_entries.total_pages > @feed_source_entries.current_page %>
-	$('#loading_pagination').show();
 	checkScroll();	
-<% else %>
-	$('#loading_pagination').hide();
 <% end %>

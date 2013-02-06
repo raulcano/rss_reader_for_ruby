@@ -42,3 +42,4 @@ jQuery(document).ready ->
     
   $("#feed_source_refresh").bind("ajax:beforeSend", fadeInLoading).bind "ajax:complete", fadeOutLoading
   $("#feed_source_refresh").bind "ajax:complete", fadeInOutNewEntriesNotification
+  $('#loading_pagination').hide();
