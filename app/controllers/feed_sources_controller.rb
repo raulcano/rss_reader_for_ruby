@@ -53,11 +53,13 @@ class FeedSourcesController < ApplicationController
   
   def create
     @feed_source = current_user.feed_sources.build(params[:feed_source])
+    @filters = current_user.filters
     
-    if (params[:filter][:id])
-      flash[:error] = "dentro. param id: " + params[:filter][:id]
-     #   encoded_url = current_user.filters.find(params[:filter][:id]).gsub(/\[url\]/, URI::encode(selected_filter.url))
-     #  @feed_source.update_attribute(:url, encoded_url)
+    filter_id = params[:filter][:id] 
+    if (filter_id != "")
+      selected_filter = current_user.filters.find(filter_id)
+      encoded_url = selected_filter.url.gsub(/\[url\]/, URI::encode(@feed_source.url))
+      @feed_source.update_attribute(:url, encoded_url)
     end
     
     if @feed_source.save
