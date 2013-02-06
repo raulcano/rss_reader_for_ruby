@@ -14,6 +14,9 @@
 	  <%= f.label :tag_list, "Tags describing the feed source" %>
       <%= f.autocomplete_field :tag_list, autocomplete_tag_name_feed_sources_path, :"data-delimiter" => ', ' %> 
       
+	   <%= f.label :filter_id %>
+	   <%= collection_select(:filter, :id, @filters, :id, :title, options ={:prompt => ":: None ::"}, :class =>"filters") %>
+	  
 	  <%= f.label :folder_id %>
 	  <% options = []
 	sorted_nested_set_options(Folder, lambda{ |folder| folder.lft }) do |folder, depth| 

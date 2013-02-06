@@ -1,6 +1,5 @@
 class Filter < ActiveRecord::Base
  attr_accessible :title, :description, :url
- belongs_to :user
  
  validates :title, presence: true, length: { maximum: 50}
  validates :description, presence: true, length: { maximum: 100}
