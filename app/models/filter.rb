@@ -9,7 +9,7 @@ class Filter < ActiveRecord::Base
  validates :url, presence: true,
           format: 
           { 
-            with: URI::ABS_URI, 
+            with: /^((http|https):\/\/)?[a-z0-9]+([-.]{1}[a-z0-9]+)*.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix, 
             message: 'may be a valid URL'
           }
  validates :url, 
