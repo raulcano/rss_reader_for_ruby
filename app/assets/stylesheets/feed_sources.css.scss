@@ -1,3 +1,59 @@
+/* feed */
+$grayLight: #999999;
+
+.feed_sources, .feed_entries{
+  list-style: none;
+  margin: 10px 0 0 0;
+  a{
+    color: black;
+  }
+
+  li {
+    padding: 10px 0 10px 10px;
+    border-top: 1px solid #e8e8e8;
+  }
+  .unread_entry{
+    .title {
+      font-weight: bold;
+      }
+    }
+  .read_entry{
+    color:  $grayLight;
+    background-color: #F7F7F7;
+    a{
+     color: $grayLight;
+    }
+  }
+   
+  
+}
+
+.tag_list{
+  font-size: 0.9em;
+  color: $grayLight;
+  display: inline;
+}
+#feed_entries_count{
+    display: inline;
+  }
+
+.feed_source_links{
+  font-size: 0.9em;
+  color: $grayLight;
+  display: inline;
+  a {
+    color: $grayLight;
+    text-decoration: none;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
+
+.index-btn{
+  float: right;
+}
+
 .feed_entries li.unfolded{
  border: 1px solid lightgray;  
 }

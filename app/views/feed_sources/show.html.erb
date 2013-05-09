@@ -23,6 +23,7 @@
 		]
 		</span>
 		<br />
+		<br />
 		<%= form_for( @feed_source, 
 					:html => { :id => "feed_source_refresh" },
 					:url => url_for(:controller => 'feed_sources', :action => 'update_entries', :id => @feed_source.id),
