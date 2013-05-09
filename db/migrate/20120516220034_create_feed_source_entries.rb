@@ -3,8 +3,8 @@ class CreateFeedSourceEntries < ActiveRecord::Migration
     create_table :feed_source_entries do |t|
       t.integer :feed_source_id
       t.integer :feed_entry_id
-      t.integer :is_starred, :default => 0
-      t.integer :is_read, :default => 0
+      t.boolean :is_starred, :default => false
+      t.boolean :is_read, :default => false
 
       t.timestamps
     end
